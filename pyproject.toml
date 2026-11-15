@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "specgate-cli"
+version = "1.1.0"
+description = "SpecGate OpenAPI Breaking-Change & SemVer Gate — Deterministic zero-LLM CI/CD & pre-commit gate"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+
+[project.urls]
+Homepage = "https://specgate.profalexandrezamboni.workers.dev/integrations/pre-commit-uvx-gitlab-ci"
+Repository = "https://github.com/profalexandrezamboni-ui/specgate-action"
+
+[project.scripts]
+specgate-cli = "specgate_cli:main"
+
+[tool.setuptools]
+py-modules = ["specgate_cli"]
