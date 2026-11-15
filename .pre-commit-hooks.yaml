@@ -1,0 +1,5 @@
+- id: specgate-openapi-diff
+  name: "SpecGate OpenAPI Breaking-Change & SemVer Gate"
+  entry: specgate-cli
+  language: python
+  pass_filenames: false
