@@ -1,0 +1,11 @@
+# Drop-in GitLab CI template for specgate-cli (v1.1.0)
+stages:
+  - contract_gates
+
+specgate_cli_gate:
+  stage: contract_gates
+  image: python:3.12-slim
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - python3 specgate_cli.py --help
