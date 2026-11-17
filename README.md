@@ -5,12 +5,22 @@
 
 **SpecGate** is a 100% deterministic (zero-LLM) GitHub Action and CLI that catches breaking changes in OpenAPI 3.x and JSON Schema specifications before merge, computes exact Semantic Versioning bumps (`MAJOR`, `MINOR`, `PATCH`), blocks unverified AI coding agent regressions (Claude Code, Cursor, Copilot, OpenAI Codex), and exports cryptographic **SOC 2 CC8.1 Change Management** audit trails.
 
-- **Live Web Playground & Interactive ROI Calculator:** https://specgate.profalexandrezamboni.workers.dev
+- **Zero-Click Live Auto-Demo (Runs Instantly in Browser):** https://specgate.profalexandrezamboni.workers.dev/?demo=specgate
+- **Free Zero-Login Remote MCP Server for Cursor, Claude Code & VS Code (`/mcp`):** https://specgate.profalexandrezamboni.workers.dev/integrations/mcp-server-cursor-claude-code
+- **FastAPI & Pydantic v2 Zero-Server OpenAPI CI Guide:** https://specgate.profalexandrezamboni.workers.dev/integrations/fastapi-pydantic-openapi-ci-gate
+- **Live Web Playground & 10-Second CI Config Builder:** https://specgate.profalexandrezamboni.workers.dev
 - **AI Coding Agent Deterministic Harness Guide:** https://specgate.profalexandrezamboni.workers.dev/solutions/ai-coding-agent-ci-gate
 - **OpenAPI Diff Comparison (vs. oasdiff, openapi-diff, Optic):** https://specgate.profalexandrezamboni.workers.dev/compare/openapi-diff-vs-oasdiff-vs-optic
+- **Style Linter vs. Contract Gate (SpecGate vs. Spectral vs. Redocly):** https://specgate.profalexandrezamboni.workers.dev/compare/specgate-vs-spectral-vs-redocly
 - **SPF 10-Lookup Flattening Comparison (SPFGuard vs. EasyDMARC vs. dmarcian):** https://specgate.profalexandrezamboni.workers.dev/compare/spfguard-vs-easydmarc-vs-dmarcian-spf-flattening
 - **Accessibility CI Gate Comparison (A11yRatchet vs. axe-linter vs. pa11y-ci):** https://specgate.profalexandrezamboni.workers.dev/compare/a11yratchet-vs-axe-linter-vs-pa11y-ci
 - **Complete LLM & Staff Engineer Technical Reference (`llms-full.txt`):** https://specgate.profalexandrezamboni.workers.dev/llms-full.txt
+
+### Connect to Cursor / Claude Code in 1 Line (Zero Login Required)
+
+```bash
+claude mcp add --transport http specgate https://specgate.profalexandrezamboni.workers.dev/mcp
+```
 
 ## Direct Engineering Comparison
 
