@@ -7,7 +7,9 @@
 
 - **Zero-Click Live Auto-Demo (Runs Instantly in Browser):** https://specgate.profalexandrezamboni.workers.dev/?demo=specgate
 - **Free Zero-Login Remote MCP Server for Cursor, Claude Code & VS Code (`/mcp`):** https://specgate.profalexandrezamboni.workers.dev/integrations/mcp-server-cursor-claude-code
+- **Native OASIS SARIF v2.1.0 Export for GitHub Code Scanning (`upload-sarif@v3`):** https://specgate.profalexandrezamboni.workers.dev/integrations/github-code-scanning-sarif-ci-gate
 - **FastAPI & Pydantic v2 Zero-Server OpenAPI CI Guide:** https://specgate.profalexandrezamboni.workers.dev/integrations/fastapi-pydantic-openapi-ci-gate
+- **Next.js + Playwright + `@axe-core/playwright` WCAG 2.2 CI Gate:** https://specgate.profalexandrezamboni.workers.dev/integrations/nextjs-playwright-axe-wcag-ci-gate
 - **Live Web Playground & 10-Second CI Config Builder:** https://specgate.profalexandrezamboni.workers.dev
 - **AI Coding Agent Deterministic Harness Guide:** https://specgate.profalexandrezamboni.workers.dev/solutions/ai-coding-agent-ci-gate
 - **OpenAPI Diff Comparison (vs. oasdiff, openapi-diff, Optic):** https://specgate.profalexandrezamboni.workers.dev/compare/openapi-diff-vs-oasdiff-vs-optic
