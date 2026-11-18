@@ -552,6 +552,103 @@ class SpecGateEngine:
             "bundle_integrity_sha256": bundle_integrity_sha256,
         }
 
+    def generate_sarif_report(
+        self,
+        diff_result: Dict[str, Any],
+        artifact_uri: str = "openapi/head.json",
+    ) -> Dict[str, Any]:
+        """Generate an OASIS SARIF v2.1.0 report compatible with GitHub Code Scanning (upload-sarif@v3)."""
+        norm = self._normalize_diff_result(diff_result)
+        rules_seen: Dict[str, Dict[str, Any]] = {}
+        results: List[Dict[str, Any]] = []
+
+        for item in norm["breaking_changes"]:
+            rule_id = str(item.get("rule_id") or "OAS-BREAK-000")
+            loc = str(item.get("json_path") or item.get("location") or "$")
+            msg = str(item.get("message") or "Breaking OpenAPI contract change detected.")
+            if rule_id not in rules_seen:
+                rules_seen[rule_id] = {
+                    "id": rule_id,
+                    "name": rule_id.replace("-", ""),
+                    "shortDescription": {"text": f"SpecGate Breaking API Contract Rule ({rule_id})"},
+                    "fullDescription": {
+                        "text": "Backward-incompatible OpenAPI 3.x / JSON Schema contract mutation requiring MAJOR SemVer bump or explicit reviewer sign-off."
+                    },
+                    "defaultConfiguration": {"level": "error"},
+                    "helpUri": "https://specgate.profalexandrezamboni.workers.dev/integrations/github-code-scanning-sarif-ci-gate",
+                    "properties": {"tags": ["api-contract", "openapi", "breaking-change", "soc2-cc8.1"]},
+                }
+            results.append(
+                {
+                    "ruleId": rule_id,
+                    "level": "error",
+                    "message": {"text": f"{msg} (Recommended SemVer bump: {norm['recommended_semver_bump']})"},
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {"uri": artifact_uri},
+                                "region": {"startLine": 1, "startColumn": 1},
+                            },
+                            "logicalLocations": [{"fullyQualifiedName": loc, "kind": "member"}],
+                        }
+                    ],
+                }
+            )
+
+        for item in norm["non_breaking_changes"]:
+            rule_id = str(item.get("rule_id") or "OAS-INFO-001")
+            loc = str(item.get("json_path") or item.get("location") or "$")
+            msg = str(item.get("message") or "Additive non-breaking OpenAPI contract change.")
+            if rule_id not in rules_seen:
+                rules_seen[rule_id] = {
+                    "id": rule_id,
+                    "name": rule_id.replace("-", ""),
+                    "shortDescription": {"text": f"SpecGate Additive Contract Change ({rule_id})"},
+                    "defaultConfiguration": {"level": "note"},
+                    "helpUri": "https://specgate.profalexandrezamboni.workers.dev/integrations/github-code-scanning-sarif-ci-gate",
+                    "properties": {"tags": ["api-contract", "openapi", "semver-minor"]},
+                }
+            results.append(
+                {
+                    "ruleId": rule_id,
+                    "level": "note",
+                    "message": {"text": msg},
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {"uri": artifact_uri},
+                                "region": {"startLine": 1, "startColumn": 1},
+                            },
+                            "logicalLocations": [{"fullyQualifiedName": loc, "kind": "member"}],
+                        }
+                    ],
+                }
+            )
+
+        return {
+            "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+            "version": "2.1.0",
+            "runs": [
+                {
+                    "tool": {
+                        "driver": {
+                            "name": "SpecGate",
+                            "version": "1.2.0",
+                            "informationUri": "https://specgate.profalexandrezamboni.workers.dev",
+                            "rules": list(rules_seen.values()),
+                        }
+                    },
+                    "results": results,
+                    "properties": {
+                        "verdict": norm["verdict"],
+                        "gate_passed": norm["gate_passed"],
+                        "recommended_semver_bump": norm["recommended_semver_bump"],
+                        "audit_sha256": norm["audit_sha256"],
+                    },
+                }
+            ],
+        }
+
 
 def generate_pr_comment_markdown(
     diff_result: Dict[str, Any],
@@ -586,10 +683,26 @@ def generate_soc2_audit_bundle(
     )
 
 
+def generate_sarif_report(
+    diff_result: Dict[str, Any],
+    artifact_uri: str = "openapi/head.json",
+) -> Dict[str, Any]:
+    return SpecGateEngine().generate_sarif_report(
+        diff_result=diff_result,
+        artifact_uri=artifact_uri,
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="SpecGate OpenAPI Breaking-Change Detector")
-    parser.add_argument("base", help="Caminho para o arquivo JSON da especificação base")
-    parser.add_argument("head", help="Caminho para o arquivo JSON da especificação proposta (PR)")
+    parser.add_argument("base", help="Path to base OpenAPI/JSON Schema specification")
+    parser.add_argument("head", help="Path to head (PR) OpenAPI/JSON Schema specification")
+    parser.add_argument(
+        "--format",
+        choices=("json", "sarif"),
+        default="json",
+        help="Output format: 'json' (default) or OASIS 'sarif' v2.1.0 for GitHub Code Scanning",
+    )
     args = parser.parse_args()
 
     with open(args.base, "r", encoding="utf-8") as f:
@@ -599,7 +712,11 @@ def main() -> int:
 
     engine = SpecGateEngine()
     report = engine.compare_specs(base_spec, head_spec)
-    print(json.dumps(report, indent=2, ensure_ascii=False))
+    if args.format == "sarif":
+        sarif_doc = engine.generate_sarif_report(report, artifact_uri=args.head)
+        print(json.dumps(sarif_doc, indent=2, ensure_ascii=False))
+    else:
+        print(json.dumps(report, indent=2, ensure_ascii=False))
     return 0 if report["gate_passed"] else 1
 
 
