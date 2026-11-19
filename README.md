@@ -9,6 +9,8 @@
 - **Free Zero-Login Remote MCP Server for Cursor, Claude Code & VS Code (`/mcp`):** https://specgate.profalexandrezamboni.workers.dev/integrations/mcp-server-cursor-claude-code
 - **Native OASIS SARIF v2.1.0 Export for GitHub Code Scanning (`upload-sarif@v3`):** https://specgate.profalexandrezamboni.workers.dev/integrations/github-code-scanning-sarif-ci-gate
 - **FastAPI & Pydantic v2 Zero-Server OpenAPI CI Guide:** https://specgate.profalexandrezamboni.workers.dev/integrations/fastapi-pydantic-openapi-ci-gate
+- **NestJS, TypeScript & Zod OpenAPI CI Guide (`v1.2.0`):** https://specgate.profalexandrezamboni.workers.dev/integrations/nestjs-typescript-zod-openapi-ci-gate
+- **AWS Route53 & Amazon SES Flattened SPF + MTA-STS Blueprint:** https://specgate.profalexandrezamboni.workers.dev/integrations/aws-route53-ses-spf-dmarc-mta-sts
 - **Next.js + Playwright + `@axe-core/playwright` WCAG 2.2 CI Gate:** https://specgate.profalexandrezamboni.workers.dev/integrations/nextjs-playwright-axe-wcag-ci-gate
 - **Live Web Playground & 10-Second CI Config Builder:** https://specgate.profalexandrezamboni.workers.dev
 - **AI Coding Agent Deterministic Harness Guide:** https://specgate.profalexandrezamboni.workers.dev/solutions/ai-coding-agent-ci-gate
@@ -45,7 +47,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run SpecGate Contract Diff
-        uses: profalexandrezamboni-ui/specgate-action@main
+        uses: profalexandrezamboni-ui/specgate-action@v1.2.0
         with:
           base_spec: "openapi/base.json"
           head_spec: "openapi/head.json"
