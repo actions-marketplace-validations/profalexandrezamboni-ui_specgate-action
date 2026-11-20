@@ -8,8 +8,10 @@
 - **Zero-Click Live Auto-Demo (Runs Instantly in Browser):** https://specgate.profalexandrezamboni.workers.dev/?demo=specgate
 - **Free Zero-Login Remote MCP Server for Cursor, Claude Code & VS Code (`/mcp`):** https://specgate.profalexandrezamboni.workers.dev/integrations/mcp-server-cursor-claude-code
 - **Native OASIS SARIF v2.1.0 Export for GitHub Code Scanning (`upload-sarif@v3`):** https://specgate.profalexandrezamboni.workers.dev/integrations/github-code-scanning-sarif-ci-gate
+- **Java & Spring Boot (`springdoc-openapi`) Zero-DB CI Gate (`v1.2.0`):** https://specgate.profalexandrezamboni.workers.dev/integrations/spring-boot-springdoc-openapi-ci-gate
 - **FastAPI & Pydantic v2 Zero-Server OpenAPI CI Guide:** https://specgate.profalexandrezamboni.workers.dev/integrations/fastapi-pydantic-openapi-ci-gate
 - **NestJS, TypeScript & Zod OpenAPI CI Guide (`v1.2.0`):** https://specgate.profalexandrezamboni.workers.dev/integrations/nestjs-typescript-zod-openapi-ci-gate
+- **Google Workspace + Microsoft 365 + SendGrid SPF PermError Fix:** https://specgate.profalexandrezamboni.workers.dev/integrations/google-workspace-microsoft-365-sendgrid-spf-permerror-fix
 - **AWS Route53 & Amazon SES Flattened SPF + MTA-STS Blueprint:** https://specgate.profalexandrezamboni.workers.dev/integrations/aws-route53-ses-spf-dmarc-mta-sts
 - **Next.js + Playwright + `@axe-core/playwright` WCAG 2.2 CI Gate:** https://specgate.profalexandrezamboni.workers.dev/integrations/nextjs-playwright-axe-wcag-ci-gate
 - **Live Web Playground & 10-Second CI Config Builder:** https://specgate.profalexandrezamboni.workers.dev
