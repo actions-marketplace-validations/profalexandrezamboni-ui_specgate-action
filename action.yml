@@ -1,5 +1,5 @@
 name: "SpecGate — OpenAPI & JSON Schema Breaking-Change Gate & SemVer Calculator"
-description: "Deterministic breaking-change detector, SemVer bump calculator, and SOC 2 audit trail gate for OpenAPI 3.x, AsyncAPI & JSON Schema."
+description: "Deterministic breaking-change detector, SemVer calculator & SARIF/SOC 2 CI gate for OpenAPI 3.x & JSON Schema."
 author: "SpecGate"
 branding:
   icon: "shield"
