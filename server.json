@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.profalexandrezamboni-ui/specgate",
   "title": "SpecGate Deterministic DevSecOps MCP Server",
-  "description": "Zero-login remote MCP server for deterministic OpenAPI 3.x breaking-change SemVer diffs, RFC 7208 SPF 10-lookup flattening, and WCAG 2.2 / EN 301 549 accessibility ratcheting over Streamable HTTP.",
+  "description": "Deterministic OpenAPI 3.x SemVer diff, SPF 10-lookup flattener & WCAG 2.2 / EN 301 549 MCP server.",
   "version": "1.2.0",
   "websiteUrl": "https://specgate.profalexandrezamboni.workers.dev/integrations/mcp-server-cursor-claude-code",
   "repository": {
