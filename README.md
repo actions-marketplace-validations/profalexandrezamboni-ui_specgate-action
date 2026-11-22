@@ -1,5 +1,6 @@
 # SpecGate — Deterministic OpenAPI Breaking-Change Gate & SemVer Calculator
 
+[![GitHub Marketplace](https://img.shields.io/badge/GitHub_Marketplace-SpecGate_v1.2.0-1f883d?logo=github)](https://github.com/marketplace/actions/specgate-openapi-json-schema-breaking-change-gate-semver-calculator)
 [![Live Playground & Cloud Gate](https://img.shields.io/badge/Live_Playground-SpecGate_Edge-blue)](https://specgate.profalexandrezamboni.workers.dev)
 [![SpecGate Live Status Badge](https://specgate.profalexandrezamboni.workers.dev/api/v1/badge.svg?verdict=PASS&bump=MINOR)](https://specgate.profalexandrezamboni.workers.dev)
 
